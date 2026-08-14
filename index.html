@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cliff Cezar | Software Developer</title>
+<meta name="description" content="Cliff Cezar, BS Computer Science from UP Baguio. Full stack developer, agent based modeling, and a habit of mapping things. Portfolio drawn as a topographic sheet.">
+<meta property="og:title" content="Cliff Cezar | Software Developer">
+<meta property="og:description" content="A portfolio drawn as a topographic map sheet. Projects, traverse, and field notes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E3E7DB'/%3E%3Cpath d='M16 7 L26 25 L6 25 Z' fill='none' stroke='%238A3E86' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='19' r='2' fill='%238A3E86'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sheet:#E3E7DB;
+  --card:#EDEFE6;
+  --ink:#1B2A26;
+  --ink-2:#4C5A52;
+  --contour:#B9A981;
+  --water:#2A5C7A;
+  --overprint:#8A3E86;
+  --rule:#9BA694;
+
+  --display:"Barlow Condensed","Oswald","Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+  --serif:"IBM Plex Serif",Georgia,serif;
+
+  --gap:clamp(20px,4vw,42px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--sheet);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(27,42,38,.055) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(90deg,rgba(27,42,38,.055) 0 1px,transparent 1px 44px);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--water)}
+img,svg{max-width:100%}
+
+/* ---------- sheet and collar ---------- */
+.sheet{
+  max-width:1200px;
+  margin:clamp(10px,2.4vw,34px) auto;
+  border:1.5px solid var(--ink);
+  outline:1px solid var(--ink);
+  outline-offset:5px;
+  background:rgba(237,239,230,.55);
+  position:relative;
+}
+.collar{
+  padding:clamp(14px,2.4vw,22px);
+  position:relative;
+}
+.collar::before,.collar::after{
+  content:"";
+  position:absolute;left:0;right:0;height:7px;
+  background-image:repeating-linear-gradient(90deg,var(--rule) 0 1px,transparent 1px 44px);
+  opacity:.75;
+}
+.collar::before{top:0}
+.collar::after{bottom:0;transform:scaleY(-1)}
+.field{
+  border:1px solid var(--rule);
+  padding:0 clamp(16px,3.4vw,44px);
+  background:linear-gradient(180deg,rgba(227,231,219,.35),rgba(227,231,219,.05));
+}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  margin:0 0 10px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.eyebrow::after{
+  content:"";flex:1;min-width:24px;height:1px;background:var(--rule);
+}
+h2{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(30px,5.2vw,50px);
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  line-height:.98;
+  margin:0 0 8px;
+}
+h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(20px,2.7vw,25px);
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  line-height:1.05;
+  margin:0;
+}
+.note{
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--water);
+  font-size:15.5px;
+  margin:0 0 26px;
+  max-width:62ch;
+}
+p{margin:0 0 14px}
+.small{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;color:var(--ink-2)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  display:flex;gap:6px 22px;flex-wrap:wrap;align-items:center;
+  padding:11px clamp(16px,3.4vw,44px);
+  margin:0 calc(-1 * clamp(16px,3.4vw,44px));
+  border-bottom:1px solid var(--rule);
+  background:rgba(227,231,219,.93);
+  backdrop-filter:blur(6px);
+}
+.nav b{
+  font-family:var(--display);font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;font-size:15px;margin-right:auto;
+}
+.nav a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-2);
+  padding:4px 0;border-bottom:1px solid transparent;
+}
+.nav a:hover,.nav a:focus-visible{color:var(--overprint);border-bottom-color:var(--overprint)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:clamp(40px,7vw,86px) 0 clamp(34px,5vw,58px)}
+#contours{
+  position:absolute;inset:-10% -6% auto -6%;height:118%;width:112%;
+  z-index:0;pointer-events:none;
+}
+#contours path{fill:none;stroke:var(--contour);vector-effect:non-scaling-stroke}
+#contours .idx{stroke-width:1.7;opacity:.85}
+#contours .min{stroke-width:.8;opacity:.5}
+#contours text{font-family:var(--mono);font-size:10px;fill:var(--contour);letter-spacing:.1em}
+.hero-in{position:relative;z-index:1;max-width:820px}
+.titleblock{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-2);
+  border-left:2px solid var(--overprint);padding-left:12px;margin-bottom:22px;
+}
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(58px,13vw,142px);
+  line-height:.82;letter-spacing:.005em;text-transform:uppercase;
+  margin:0 0 18px;
+}
+h1 span{display:block}
+.lede{font-size:clamp(16px,1.9vw,19px);max-width:56ch;color:var(--ink)}
+.bm{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--overprint);text-transform:uppercase;margin-bottom:16px;
+}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;padding:12px 20px;border:1.5px solid var(--ink);color:var(--ink);
+  background:transparent;cursor:pointer;transition:background .16s,color .16s,border-color .16s;
+}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--sheet)}
+.btn.alt{border-color:var(--overprint);color:var(--overprint)}
+.btn.alt:hover,.btn.alt:focus-visible{background:var(--overprint);color:var(--sheet)}
+
+/* ---------- blocks ---------- */
+.block{padding:clamp(48px,7vw,86px) 0;border-top:1px dashed var(--rule)}
+.head{max-width:70ch}
+
+/* legend / about */
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:2px;background:var(--rule);border:1px solid var(--rule)}
+.legend div{background:var(--card);padding:18px 20px}
+.legend h4{
+  font-family:var(--display);font-size:17px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.legend p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.sym{width:16px;height:16px;flex:none}
+
+/* traverse */
+.profile{width:100%;height:auto;margin:6px 0 34px;display:block}
+.profile .ground{fill:rgba(185,169,129,.28);stroke:var(--contour);stroke-width:1.5}
+.profile .datum{stroke:var(--rule);stroke-width:1;stroke-dasharray:3 4}
+.profile text{font-family:var(--mono);font-size:9.5px;fill:var(--ink-2);letter-spacing:.08em}
+.profile .stn{fill:var(--sheet);stroke:var(--ink);stroke-width:2}
+.profile .stn-now{fill:var(--overprint);stroke:var(--overprint)}
+
+.stations{display:grid;gap:2px;background:var(--rule);border:1px solid var(--rule)}
+.stn-row{
+  background:var(--card);padding:22px clamp(16px,2.4vw,26px);
+  display:grid;grid-template-columns:64px 1fr;gap:clamp(14px,2vw,26px);
+}
+.stn-no{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-2);line-height:1.5}
+.stn-no b{display:block;font-family:var(--display);font-size:30px;letter-spacing:.04em;color:var(--overprint);font-weight:700}
+.stn-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
+.org{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--water);margin-bottom:10px}
+ul{margin:0;padding-left:18px}
+li{margin-bottom:7px;font-size:15px}
+li::marker{color:var(--contour)}
+
+/* projects */
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:16px}
+.plate{
+  background:var(--card);border:1px solid var(--rule);padding:22px 22px 20px;
+  display:flex;flex-direction:column;position:relative;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.plate:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:4px 4px 0 rgba(27,42,38,.11)}
+.plate.rev{border-color:var(--overprint);border-style:dashed}
+.plate.rev:hover{border-color:var(--overprint);box-shadow:4px 4px 0 rgba(138,62,134,.16)}
+.tag{
+  position:absolute;top:-1px;right:-1px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--overprint);color:var(--sheet);padding:4px 9px;
+}
+.plate .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-2);margin:0 0 9px}
+.plate h3{margin-bottom:9px;padding-right:18px}
+.plate p{font-size:14.5px;color:var(--ink-2);margin-bottom:12px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin:auto 0 14px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;border:1px solid var(--rule);padding:3px 7px;color:var(--ink-2)}
+.links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.links a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.links a:hover{color:var(--overprint)}
+.footnote{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--overprint);
+  border-left:2px solid var(--overprint);padding:8px 0 8px 12px;margin:26px 0 0;max-width:74ch;line-height:1.7;
+}
+
+/* skills */
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px 32px}
+.kit h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.kit ul{list-style:none;padding:0;margin:0;columns:2;column-gap:18px}
+.kit li{font-size:14.5px;margin-bottom:5px;break-inside:avoid}
+
+/* field notes */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.fnote{border-top:2px solid var(--contour);padding-top:14px}
+.fnote h4{font-family:var(--display);font-size:19px;letter-spacing:.07em;text-transform:uppercase;margin:0 0 6px;font-weight:600}
+.fnote p{font-size:14px;color:var(--ink-2);margin:0}
+
+/* contact + footer collar */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;background:var(--rule);border:1px solid var(--rule);margin-top:8px}
+.contact a,.contact div{background:var(--card);padding:18px 20px;text-decoration:none;color:var(--ink);display:block}
+.contact a:hover{background:var(--overprint);color:var(--sheet)}
+.contact a:hover .small,.contact a:hover b{color:inherit}
+.contact b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:600;display:block;margin-top:3px;word-break:break-word}
+.marginalia{
+  border-top:1px solid var(--rule);margin-top:0;
+  padding:26px clamp(16px,3.4vw,44px);
+  display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+}
+.scalebar{display:flex;align-items:center;gap:12px}
+.credits{max-width:44ch}
+#readout{
+  position:fixed;left:12px;bottom:12px;z-index:60;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  background:rgba(27,42,38,.9);color:var(--sheet);padding:6px 10px;
+  pointer-events:none;opacity:0;transition:opacity .25s;
+}
+@media (pointer:fine){#readout.on{opacity:1}}
+
+/* reveal */
+.rev-up{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rev-up.is-in{opacity:1;transform:none}
+
+@media (max-width:640px){
+  .stn-row{grid-template-columns:1fr;gap:10px}
+  .stn-no{display:flex;align-items:baseline;gap:10px}
+  .stn-no b{display:inline}
+  .kit ul{columns:1}
+  #contours{opacity:.75}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important;transition:none !important}
+  .rev-up{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="readout" aria-hidden="true"></div>
+
+<main class="sheet">
+<div class="collar">
+<div class="field">
+
+  <nav class="nav">
+    <b>Cezar Quadrangle</b>
+    <a href="#legend">Legend</a>
+    <a href="#traverse">Traverse</a>
+    <a href="#survey">Survey</a>
+    <a href="#kit">Kit</a>
+    <a href="#notes">Field notes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <svg id="contours" viewBox="0 0 1200 660" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+    <div class="hero-in">
+      <p class="titleblock">Philippines / Luzon &nbsp;·&nbsp; 7.5 minute series &nbsp;·&nbsp; software developer sheet &nbsp;·&nbsp; edition 2026</p>
+      <h1><span>Cliff</span><span>Cezar</span></h1>
+      <p class="bm">
+        <svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2 L14.5 14 L1.5 14 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="10.5" r="1.6" fill="currentColor"/></svg>
+        BM 1540 · Baguio · 16.4023 N 120.5960 E
+      </p>
+      <p class="lede">BS Computer Science from the University of the Philippines Baguio. I build full stack web apps, model things that are hard to test in real life, and I like maps enough to draw my portfolio as one. Currently based in Quiapo, Manila and open to entry level developer roles.</p>
+      <div class="actions">
+        <a class="btn" href="#survey">Walk the survey</a>
+        <a class="btn alt" href="resume.pdf" target="_blank" rel="noopener">Open the resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ LEGEND / ABOUT ============ -->
+  <section class="block rev-up" id="legend">
+    <div class="head">
+      <p class="eyebrow">Sheet 01 · Legend</p>
+      <h2>What the symbols mean</h2>
+      <p class="note">Every map opens with a legend, so here is mine before you read the rest of the sheet.</p>
+    </div>
+    <div class="legend">
+      <div>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 11 L5.5 4 L9 9 L11.5 5.5 L15 11" fill="none" stroke="var(--water)" stroke-width="1.5"/></svg>Full stack developer</h4>
+        <p>Shipped the SILBI web platform end to end, from requirements gathering to deployment, plus two live personal apps on Vercel.</p>
+      </div>
+      <div>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="var(--water)" stroke-width="1.5"/><circle cx="8" cy="8" r="2.2" fill="var(--water)"/></svg>Agent based modeling</h4>
+        <p>Built a NetLogo simulation of COVID-19 spread across two barangays in Quiapo, then tested three food relief strategies over 100 runs each.</p>
+      </div>
+      <div>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 13 L2 3 L8 6 L14 3 L14 13 L8 10 Z" fill="none" stroke="var(--water)" stroke-width="1.4"/></svg>Data and analysis</h4>
+        <p>Statistical testing in R, figures in Python, and full thesis typesetting in LaTeX with IEEE citations across 60 references.</p>
+      </div>
+      <div>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4" width="11" height="8" fill="none" stroke="var(--water)" stroke-width="1.4"/><path d="M2.5 7.5 H13.5" stroke="var(--water)" stroke-width="1.4"/></svg>Two years as treasurer</h4>
+        <p>Handled dues, budgets, canvassing, and financial reports for the Rotaract Club of UP Baguio. Good practice for saying no to a budget line.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRAVERSE / EXPERIENCE ============ -->
+  <section class="block rev-up" id="traverse">
+    <div class="head">
+      <p class="eyebrow">Sheet 02 · Traverse</p>
+      <h2>Section line, 2020 to now</h2>
+      <p class="note">Plotted by elevation, because the route really did start at sea level in Manila, climb into the Cordillera for six years, and come back down.</p>
+    </div>
+
+    <svg class="profile" viewBox="0 0 1000 232" role="img" aria-label="Elevation profile of the route from Manila in 2020, up to Baguio, and back down to Manila in 2026, with five marked stations.">
+      <path class="datum" d="M40 196 H970"/>
+      <path class="ground" d="M40 196 L120 190 L210 96 L300 62 L470 56 L640 50 L760 66 L860 150 L940 192 L970 196 L970 210 L40 210 Z"/>
+      <g>
+        <circle class="stn" cx="120" cy="190" r="6"/>
+        <circle class="stn" cx="300" cy="62" r="6"/>
+        <circle class="stn" cx="470" cy="56" r="6"/>
+        <circle class="stn" cx="640" cy="50" r="6"/>
+        <circle class="stn stn-now" cx="940" cy="192" r="7"/>
+      </g>
+      <text x="120" y="176" text-anchor="middle">2020 · MANILA · 13 M</text>
+      <text x="300" y="46" text-anchor="middle">2023 · ROTARACT</text>
+      <text x="470" y="40" text-anchor="middle">2025 · SILBI</text>
+      <text x="640" y="34" text-anchor="middle">2026 · THESIS · 1540 M</text>
+      <text x="940" y="176" text-anchor="end">NOW · MANILA</text>
+      <text x="40" y="224">SEA LEVEL DATUM</text>
+      <text x="970" y="224" text-anchor="end">VERTICAL EXAGGERATION APPLIED</text>
+    </svg>
+
+    <div class="stations">
+      <article class="stn-row">
+        <p class="stn-no"><b>01</b>Jul 2023 – Jun 2025</p>
+        <div>
+          <div class="stn-head"><h3>Treasurer and Finance Service Director</h3><span class="small">Baguio City</span></div>
+          <p class="org">Rotaract Club of UP Baguio</p>
+          <ul>
+            <li>Managed collection and documentation of RI dues and membership fees, with timely remittance and clean records.</li>
+            <li>Oversaw budgeting and financial tracking for income generating projects that funded club outreach.</li>
+            <li>Canvassed and compared prices for materials used in fundraising activities and events.</li>
+            <li>Prepared financial reports and expense breakdowns presented at general assemblies and officer meetings.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="stn-row">
+        <p class="stn-no"><b>02</b>Feb 2025 – May 2025</p>
+        <div>
+          <div class="stn-head"><h3>Software Developer</h3><span class="small">Baguio City</span></div>
+          <p class="org">SILBI Web App Project</p>
+          <ul>
+            <li>Developed a centralized platform giving business incubatees access to learning resources, announcements, and communication tools, covering the full lifecycle from requirements gathering to deployment.</li>
+            <li>Implemented backend logic that automates roadmap tracking, meeting scheduling, and legal document generation, cutting the manual admin work.</li>
+            <li>Worked with designers and stakeholders on the interface, refining it based on real user feedback.</li>
+            <li>Built scalable and maintainable features on a Linux based environment to support the platform as it grows.</li>
+          </ul>
+          <p class="links" style="margin-top:12px"><a href="https://upbsilbitulay.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/rye0x/silbi-tulay" target="_blank" rel="noopener">Source</a></p>
+        </div>
+      </article>
+      <article class="stn-row">
+        <p class="stn-no"><b>03</b>Sep 2025 – May 2026</p>
+        <div>
+          <div class="stn-head"><h3>Researcher</h3><span class="small">Baguio City</span></div>
+          <p class="org">UP Baguio Department of Mathematics and Computer Science</p>
+          <ul>
+            <li>Built an agent based simulation in NetLogo to study how COVID-19 spreads through dense urban communities.</li>
+            <li>Modeled resident behavior and movement across two barangays in Quiapo, Manila, comparing three food relief strategies over 100 simulation runs per scenario.</li>
+            <li>Analyzed the results with statistical tests in R to find which relief strategy reduced disease spread the most.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="stn-row">
+        <p class="stn-no"><b>04</b>2020 – 2026</p>
+        <div>
+          <div class="stn-head"><h3>BS Computer Science</h3><span class="small">Baguio City</span></div>
+          <p class="org">University of the Philippines Baguio, Department of Mathematics and Computer Science</p>
+          <ul>
+            <li>Coursework across algorithms, systems, databases, and modeling, with the Special Problem completed in May 2026.</li>
+            <li>Publication Officer for the UP Baguio Mountaineers and Eagle Scout outside the classroom.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ SURVEY / PROJECTS ============ -->
+  <section class="block rev-up" id="survey">
+    <div class="head">
+      <p class="eyebrow">Sheet 03 · Surveyed features</p>
+      <h2>Things I built and shipped</h2>
+      <p class="note">Features drawn in purple were surveyed after the resume went to print, the same way revisions are overprinted on a quadrangle.</p>
+    </div>
+
+    <div class="plates">
+      <article class="plate">
+        <p class="kind">Full stack web app</p>
+        <h3>Job-Tag</h3>
+        <p>A tracker for job applications with a calendar for interviews and deadlines, and file upload and download for resumes, CVs, and other documents. Paste a job posting link and it fills in the job title, company, work setup, and employment type by itself, so there is almost no manual encoding left per application.</p>
+        <div class="stack"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Vercel</span><span class="chip">Open source</span></div>
+        <p class="links"><a href="https://job-tag.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/cgcezar/job-tag" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate">
+        <p class="kind">Browser game</p>
+        <h3>Byte: A Coding Pet</h3>
+        <p>A virtual pet where every interaction has to be earned by solving a JavaScript challenge instead of clicking a button. It runs user submitted functions against test cases inside a contained scope and reports per test results, handling syntax and runtime errors without breaking the app. Game logic stays as plain JavaScript, separate from React state and UI.</p>
+        <div class="stack"><span class="chip">React</span><span class="chip">Vite</span><span class="chip">Test runner</span><span class="chip">XP system</span></div>
+        <p class="links"><a href="https://github.com/cgcezar/byte-coding-pet" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate rev">
+        <span class="tag">Revision</span>
+        <p class="kind">Organization site</p>
+        <h3>UP Baguio Mountaineers</h3>
+        <p>The full club site behind the Open Climb event page. It carries a Cordillera mountain map built on Leaflet and OpenStreetMap, an events calendar on FullCalendar, and a batch directory that was designed carefully so member details stay private. Plain HTML, CSS, and JavaScript with no build step, so it deploys for free and stays easy to hand over.</p>
+        <div class="stack"><span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">FullCalendar</span><span class="chip">No build step</span></div>
+      </article>
+
+      <article class="plate rev">
+        <span class="tag">Revision</span>
+        <p class="kind">Organization site</p>
+        <h3>Rotaract Club of UP Baguio</h3>
+        <p>A static site for the club with officer directories, flagship events, and an End Polio Now section. Built with plain HTML, CSS, and JavaScript so officers who come after me can update it without learning a framework first.</p>
+        <div class="stack"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+      </article>
+
+      <article class="plate">
+        <p class="kind">Event site</p>
+        <h3>Open Climb 2026</h3>
+        <p>The official event website for the UP Baguio Mountaineers Open Climb, built and launched in March 2026. It puts event information, registration, and promotion in one public facing place instead of scattered posts.</p>
+        <div class="stack"><span class="chip">Static site</span><span class="chip">Registration</span></div>
+      </article>
+
+      <article class="plate rev">
+        <span class="tag">In progress</span>
+        <p class="kind">Infrastructure</p>
+        <h3>Job-Tag on AWS</h3>
+        <p>Redeploying Job-Tag as an infrastructure project instead of building something new: containers with Docker, infrastructure as code with Terraform, ECS Fargate for the runtime, GitHub Actions for the pipeline, and monitoring on top. The goal is to learn the cloud side of shipping, not just the app side.</p>
+        <div class="stack"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span></div>
+      </article>
+
+      <article class="plate rev">
+        <span class="tag">Revision</span>
+        <p class="kind">Research artifact</p>
+        <h3>COVID-19 and food relief model</h3>
+        <p>My undergraduate Special Problem: a NetLogo SEIR model of Barangays 384 and 385 in Quiapo, comparing three food relief systems across three barangay scenarios. It ships with behavior flowcharts, a simulation README, Python figures, and a LaTeX paper with 60 IEEE references.</p>
+        <div class="stack"><span class="chip">NetLogo</span><span class="chip">R</span><span class="chip">Python</span><span class="chip">LaTeX</span></div>
+      </article>
+
+      <article class="plate">
+        <p class="kind">Platform</p>
+        <h3>SILBI Tulay</h3>
+        <p>The incubatee platform I built at UP Baguio, kept here as well because it is the largest thing I have shipped with real users on the other end.</p>
+        <div class="stack"><span class="chip">PHP</span><span class="chip">Linux</span><span class="chip">Automation</span></div>
+        <p class="links"><a href="https://upbsilbitulay.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/rye0x/silbi-tulay" target="_blank" rel="noopener">Source</a></p>
+      </article>
+    </div>
+
+    <p class="footnote">Purple overprint marks features added since the last printing. On a real quadrangle it means the sheet was revised from newer aerial photography without resurveying the whole map. Here it means these are the projects that are not on my resume yet.</p>
+  </section>
+
+  <!-- ============ KIT / SKILLS ============ -->
+  <section class="block rev-up" id="kit">
+    <div class="head">
+      <p class="eyebrow">Sheet 04 · Kit</p>
+      <h2>What I carry</h2>
+      <p class="note">Listed the way I would pack for a climb, heaviest and most used first.</p>
+    </div>
+    <div class="kit">
+      <div>
+        <h4>Languages</h4>
+        <ul><li>Python</li><li>JavaScript</li><li>PHP</li><li>SQL</li><li>C / C++</li><li>Java</li><li>R</li><li>Matlab</li></ul>
+      </div>
+      <div>
+        <h4>Web and tools</h4>
+        <ul><li>React</li><li>Vite</li><li>Node.js</li><li>Git and GitHub</li><li>AWS</li><li>Vercel</li><li>Linux and UNIX</li><li>LaTeX</li><li>Figma</li><li>AI and automation</li></ul>
+      </div>
+      <div>
+        <h4>Modeling and mapping</h4>
+        <ul><li>NetLogo</li><li>QGIS</li><li>ArcGIS</li><li>Leaflet</li><li>Statistical testing</li><li>Canva</li></ul>
+      </div>
+      <div>
+        <h4>Toponymy</h4>
+        <ul><li>Onhan, native</li><li>Filipino, fluent</li><li>English, fluent</li><li>Japanese, basic</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIELD NOTES / INTERESTS ============ -->
+  <section class="block rev-up" id="notes">
+    <div class="head">
+      <p class="eyebrow">Sheet 05 · Field notes</p>
+      <h2>Off the clock</h2>
+      <p class="note">Margins of a map are for the things that did not fit inside the neatline.</p>
+    </div>
+    <div class="notes">
+      <div class="fnote"><h4>Mountaineering</h4><p>Publication Officer for the UP Baguio Mountaineers. Six years of living beside the Cordillera will do that to a person.</p></div>
+      <div class="fnote"><h4>Cartography</h4><p>The reason this page has contour lines, a scale bar, and a declination diagram instead of a hero gradient.</p></div>
+      <div class="fnote"><h4>Cooking</h4><p>A recipe is just a build script with better output.</p></div>
+      <div class="fnote"><h4>Photography</h4><p>Mostly trails, ridgelines, and whatever the weather is doing above 1,000 meters.</p></div>
+      <div class="fnote"><h4>Ultimate frisbee</h4><p>The fastest way to remember that a computer science degree is mostly sitting down.</p></div>
+      <div class="fnote"><h4>Eagle Scout</h4><p>Where the habit of packing carefully and finishing the checklist started.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="block rev-up" id="contact">
+    <div class="head">
+      <p class="eyebrow">Sheet 06 · Control points</p>
+      <h2>Get in touch</h2>
+      <p class="note">Open to entry level software developer roles, onsite in Metro Manila or remote.</p>
+    </div>
+    <div class="contact">
+      <a href="mailto:clffczr@gmail.com" id="mail"><span class="small">Email</span><b id="mailtext">clffczr@gmail.com</b></a>
+      <a href="tel:+639708398415"><span class="small">Phone</span><b>+63 970 839 8415</b></a>
+      <a href="https://github.com/cgcezar" target="_blank" rel="noopener"><span class="small">GitHub</span><b>github.com/cgcezar</b></a>
+      <a href="https://linkedin.com/in/cliff-cezar" target="_blank" rel="noopener"><span class="small">LinkedIn</span><b>cliff-cezar</b></a>
+      <div><span class="small">Grid reference</span><b>Quiapo, Manila</b><span class="small">14.5995 N 120.9842 E</span></div>
+    </div>
+  </section>
+
+</div><!-- /field -->
+
+<footer class="marginalia">
+  <div class="scalebar">
+    <svg width="150" height="34" viewBox="0 0 150 34" aria-label="Scale bar">
+      <rect x="0" y="12" width="30" height="9" fill="var(--ink)"/>
+      <rect x="30" y="12" width="30" height="9" fill="none" stroke="var(--ink)" stroke-width="1"/>
+      <rect x="60" y="12" width="30" height="9" fill="var(--ink)"/>
+      <rect x="90" y="12" width="30" height="9" fill="none" stroke="var(--ink)" stroke-width="1"/>
+      <text x="0" y="9" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">0</text>
+      <text x="112" y="9" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">6 YEARS</text>
+    </svg>
+    <svg width="66" height="52" viewBox="0 0 66 52" aria-label="Declination diagram">
+      <path d="M18 48 L18 8" stroke="var(--ink)" stroke-width="1.2"/>
+      <path d="M18 8 L15 15 L21 15 Z" fill="var(--ink)"/>
+      <text x="12" y="6" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">GN</text>
+      <path d="M18 48 L34 10" stroke="var(--overprint)" stroke-width="1.2"/>
+      <path d="M34 10 L30 16 L36 17 Z" fill="var(--overprint)"/>
+      <text x="38" y="12" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--overprint)">MN</text>
+    </svg>
+  </div>
+  <p class="small credits">Compiled and drawn by Cliff Cezar. Base data: six years in Baguio, one thesis, and a lot of late nights. Sheet last revised August 2026. Contours are generated, elevations are real.</p>
+</footer>
+
+</div><!-- /collar -->
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- contour field ---- */
+  var svg = document.getElementById('contours');
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function ring(cx, cy, r, seed, sx, sy){
+    var d = '', pts = 132;
+    for (var i = 0; i <= pts; i++){
+      var t = i / pts * Math.PI * 2;
+      var rr = r * (1 + 0.15*Math.sin(3*t + seed) + 0.085*Math.sin(5*t + seed*1.7) + 0.05*Math.sin(8*t + seed*0.6));
+      var x = cx + rr * Math.cos(t) * sx;
+      var y = cy + rr * Math.sin(t) * sy;
+      d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+    }
+    return d + 'Z';
+  }
+
+  function hill(cx, cy, seed, start, step, count, sx, sy, topElev){
+    for (var i = 0; i < count; i++){
+      var p = document.createElementNS(NS, 'path');
+      var isIndex = i % 3 === 0;
+      p.setAttribute('d', ring(cx, cy, start + i*step, seed, sx, sy));
+      p.setAttribute('class', isIndex ? 'idx' : 'min');
+      svg.appendChild(p);
+      if (isIndex && i > 0){
+        var t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', cx + 8);
+        t.setAttribute('y', cy - (start + i*step) * sy + 3);
+        t.textContent = (topElev - i*100);
+        svg.appendChild(t);
+      }
+    }
+  }
+
+  hill(880, 250, 1.7, 46, 30, 12, 1.45, 0.82, 1540);
+  hill(215, 500, 4.25, 38, 30, 8, 1.3, 0.7, 900);
+
+  if (!reduce){
+    var paths = svg.querySelectorAll('path');
+    Array.prototype.forEach.call(paths, function(p, i){
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.22,.61,.36,1) ' + (i * 0.045) + 's';
+    });
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        Array.prototype.forEach.call(paths, function(p){ p.style.strokeDashoffset = 0; });
+      });
+    });
+    var labels = svg.querySelectorAll('text');
+    Array.prototype.forEach.call(labels, function(t){
+      t.style.opacity = 0;
+      t.style.transition = 'opacity .8s ease 1.3s';
+    });
+    setTimeout(function(){
+      Array.prototype.forEach.call(labels, function(t){ t.style.opacity = 1; });
+    }, 60);
+  }
+
+  /* ---- scroll reveal ---- */
+  var targets = document.querySelectorAll('.rev-up');
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin: '0px 0px -12% 0px'});
+    Array.prototype.forEach.call(targets, function(t){ io.observe(t); });
+  } else {
+    Array.prototype.forEach.call(targets, function(t){ t.classList.add('is-in'); });
+  }
+
+  /* ---- cursor coordinate readout ---- */
+  var out = document.getElementById('readout');
+  var LAT = [16.42, 14.58], LON = [120.58, 121.02];
+  function dms(v, pos, neg){
+    var hemi = v >= 0 ? pos : neg, a = Math.abs(v);
+    var d = Math.floor(a), m = Math.floor((a - d) * 60), s = Math.round((((a - d) * 60) - m) * 60);
+    if (s === 60){ s = 0; m += 1; }
+    return d + '\u00B0' + String(m).padStart(2,'0') + "'" + String(s).padStart(2,'0') + '" ' + hemi;
+  }
+  var ticking = false, mx = 0, my = 0;
+  window.addEventListener('pointermove', function(e){
+    if (e.pointerType !== 'mouse') return;
+    mx = e.clientX; my = e.clientY;
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var lat = LAT[0] + (my / window.innerHeight) * (LAT[1] - LAT[0]);
+      var lon = LON[0] + (mx / window.innerWidth) * (LON[1] - LON[0]);
+      out.textContent = dms(lat, 'N', 'S') + '  ' + dms(lon, 'E', 'W');
+      out.classList.add('on');
+      ticking = false;
+    });
+  }, {passive: true});
+  window.addEventListener('pointerleave', function(){ out.classList.remove('on'); });
+
+  /* ---- copy email ---- */
+  var mail = document.getElementById('mail'), mailtext = document.getElementById('mailtext');
+  mail.addEventListener('click', function(e){
+    if (!navigator.clipboard) return;
+    e.preventDefault();
+    navigator.clipboard.writeText('clffczr@gmail.com').then(function(){
+      mailtext.textContent = 'Copied to clipboard';
+      setTimeout(function(){ mailtext.textContent = 'clffczr@gmail.com'; }, 1600);
+    }, function(){
+      window.location.href = 'mailto:clffczr@gmail.com';
+    });
+  });
+})();
+</script>
+</body>
+</html>
