@@ -3,32 +3,53 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Cliff Cezar | Software Developer</title>
-<meta name="description" content="Cliff Cezar, BS Computer Science from UP Baguio. Full stack developer, agent based modeling, and a habit of mapping things. Portfolio drawn as a topographic sheet.">
+<meta name="description" content="Cliff Cezar, BS Computer Science from UP Baguio. Full stack web apps, defensive security tooling, and agent based modeling. Portfolio drawn as a topographic sheet.">
 <meta property="og:title" content="Cliff Cezar | Software Developer">
-<meta property="og:description" content="A portfolio drawn as a topographic map sheet. Projects, traverse, and field notes.">
-<meta property="og:type" content="website">
+<meta property="og:description" content="A portfolio drawn as a topographic map sheet. Fourteen surveyed features, one traverse, and a set of field notes.">
+<meta property="og:type" content="profile">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E3E7DB'/%3E%3Cpath d='M16 7 L26 25 L6 25 Z' fill='none' stroke='%238A3E86' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='19' r='2' fill='%238A3E86'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&family=Encode+Sans+Condensed:wght@500;600;700&family=Overpass:wght@400;500;600&family=Petrona:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --sheet:#E3E7DB;
   --card:#EDEFE6;
+  --wash:rgba(237,239,230,.42);
+  --nav-bg:rgba(227,231,219,.94);
+  --grid:rgba(27,42,38,.055);
+  --shadow:rgba(27,42,38,.12);
   --ink:#1B2A26;
   --ink-2:#4C5A52;
   --contour:#B9A981;
   --water:#2A5C7A;
   --overprint:#8A3E86;
   --rule:#9BA694;
+  --pill:#1B2A26;
+  --pill-ink:#E3E7DB;
 
-  --display:"Barlow Condensed","Oswald","Arial Narrow",sans-serif;
-  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
-  --serif:"IBM Plex Serif",Georgia,serif;
-
-  --gap:clamp(20px,4vw,42px);
+  --display:"Encode Sans Condensed","Arial Narrow","Helvetica Neue Condensed",sans-serif;
+  --body:"Overpass","Helvetica Neue",system-ui,sans-serif;
+  --mono:"Azeret Mono",ui-monospace,"Courier New",monospace;
+  --serif:"Petrona",Georgia,serif;
+}
+body.night{
+  --sheet:#101815;
+  --card:#18211D;
+  --wash:rgba(24,33,29,.5);
+  --nav-bg:rgba(16,24,21,.95);
+  --grid:rgba(232,237,230,.045);
+  --shadow:rgba(0,0,0,.4);
+  --ink:#E7EDE6;
+  --ink-2:#9BA9A0;
+  --contour:#7E6C45;
+  --water:#8CBBD6;
+  --overprint:#E4736C;
+  --rule:#35423C;
+  --pill:#E7EDE6;
+  --pill-ink:#101815;
 }
 
 *{box-sizing:border-box}
@@ -37,16 +58,26 @@ body{
   margin:0;
   background:var(--sheet);
   background-image:
-    repeating-linear-gradient(0deg,rgba(27,42,38,.055) 0 1px,transparent 1px 44px),
-    repeating-linear-gradient(90deg,rgba(27,42,38,.055) 0 1px,transparent 1px 44px);
+    repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 44px);
   color:var(--ink);
   font-family:var(--body);
   font-size:16px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  transition:background-color .3s ease,color .3s ease;
 }
 a{color:var(--water)}
 img,svg{max-width:100%}
+:focus-visible{outline:2px solid var(--overprint);outline-offset:3px}
+section[id]{scroll-margin-top:84px}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--ink);color:var(--sheet);padding:10px 16px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+}
+.skip:focus{left:8px;top:8px}
 
 /* ---------- sheet and collar ---------- */
 .sheet{
@@ -55,122 +86,95 @@ img,svg{max-width:100%}
   border:1.5px solid var(--ink);
   outline:1px solid var(--ink);
   outline-offset:5px;
-  background:rgba(237,239,230,.55);
+  background:var(--wash);
   position:relative;
 }
-.collar{
-  padding:clamp(14px,2.4vw,22px);
-  position:relative;
-}
+.collar{padding:clamp(14px,2.4vw,22px);position:relative}
 .collar::before,.collar::after{
-  content:"";
-  position:absolute;left:0;right:0;height:7px;
+  content:"";position:absolute;left:0;right:0;height:7px;
   background-image:repeating-linear-gradient(90deg,var(--rule) 0 1px,transparent 1px 44px);
   opacity:.75;
 }
 .collar::before{top:0}
 .collar::after{bottom:0;transform:scaleY(-1)}
-.field{
-  border:1px solid var(--rule);
-  padding:0 clamp(16px,3.4vw,44px);
-  background:linear-gradient(180deg,rgba(227,231,219,.35),rgba(227,231,219,.05));
-}
+.field{border:1px solid var(--rule);padding:0 clamp(16px,3.4vw,44px)}
 
 /* ---------- shared type ---------- */
 .eyebrow{
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--ink-2);
-  margin:0 0 10px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-2);margin:0 0 10px;
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;
 }
-.eyebrow::after{
-  content:"";flex:1;min-width:24px;height:1px;background:var(--rule);
-}
+.eyebrow::after{content:"";flex:1;min-width:24px;height:1px;background:var(--rule)}
 h2{
-  font-family:var(--display);
-  font-weight:700;
-  font-size:clamp(30px,5.2vw,50px);
-  letter-spacing:.03em;
-  text-transform:uppercase;
-  line-height:.98;
-  margin:0 0 8px;
+  font-family:var(--display);font-weight:700;font-size:clamp(30px,5.2vw,50px);
+  letter-spacing:.03em;text-transform:uppercase;line-height:.98;margin:0 0 8px;
 }
 h3{
-  font-family:var(--display);
-  font-weight:600;
-  font-size:clamp(20px,2.7vw,25px);
-  letter-spacing:.045em;
-  text-transform:uppercase;
-  line-height:1.05;
-  margin:0;
+  font-family:var(--display);font-weight:600;font-size:clamp(20px,2.7vw,25px);
+  letter-spacing:.045em;text-transform:uppercase;line-height:1.05;margin:0;
 }
 .note{
-  font-family:var(--serif);
-  font-style:italic;
-  color:var(--water);
-  font-size:15.5px;
-  margin:0 0 26px;
-  max-width:62ch;
+  font-family:var(--serif);font-style:italic;color:var(--water);
+  font-size:16.5px;margin:0 0 26px;max-width:62ch;
 }
 p{margin:0 0 14px}
-.small{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;color:var(--ink-2)}
+.small{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-2)}
 
 /* ---------- nav ---------- */
 .nav{
   position:sticky;top:0;z-index:40;
-  display:flex;gap:6px 22px;flex-wrap:wrap;align-items:center;
+  display:flex;gap:6px 20px;flex-wrap:wrap;align-items:center;
   padding:11px clamp(16px,3.4vw,44px);
   margin:0 calc(-1 * clamp(16px,3.4vw,44px));
   border-bottom:1px solid var(--rule);
-  background:rgba(227,231,219,.93);
+  background:var(--nav-bg);
   backdrop-filter:blur(6px);
 }
-.nav b{
+.nav .brand{
   font-family:var(--display);font-weight:700;letter-spacing:.13em;
   text-transform:uppercase;font-size:15px;margin-right:auto;
+  text-decoration:none;color:var(--ink);
 }
-.nav a{
-  font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+.nav a.jump{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
   text-transform:uppercase;text-decoration:none;color:var(--ink-2);
   padding:4px 0;border-bottom:1px solid transparent;
 }
-.nav a:hover,.nav a:focus-visible{color:var(--overprint);border-bottom-color:var(--overprint)}
+.nav a.jump:hover,.nav a.jump:focus-visible{color:var(--overprint);border-bottom-color:var(--overprint)}
+.nav a.jump.active{color:var(--ink);border-bottom-color:var(--ink)}
+.toggle{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:var(--ink-2);border:1px solid var(--rule);
+  padding:5px 10px;cursor:pointer;transition:color .16s,border-color .16s;
+}
+.toggle:hover{color:var(--overprint);border-color:var(--overprint)}
 
 /* ---------- hero ---------- */
 .hero{position:relative;overflow:hidden;padding:clamp(40px,7vw,86px) 0 clamp(34px,5vw,58px)}
-#contours{
-  position:absolute;inset:-10% -6% auto -6%;height:118%;width:112%;
-  z-index:0;pointer-events:none;
-}
+#contours{position:absolute;inset:-10% -6% auto -6%;height:118%;width:112%;z-index:0;pointer-events:none}
 #contours path{fill:none;stroke:var(--contour);vector-effect:non-scaling-stroke}
 #contours .idx{stroke-width:1.7;opacity:.85}
 #contours .min{stroke-width:.8;opacity:.5}
-#contours text{font-family:var(--mono);font-size:10px;fill:var(--contour);letter-spacing:.1em}
-.hero-in{position:relative;z-index:1;max-width:820px}
+#contours text{font-family:var(--mono);font-size:9.5px;fill:var(--contour);letter-spacing:.1em}
+.hero-in{position:relative;z-index:1;max-width:830px}
 .titleblock{
-  font-family:var(--mono);font-size:11px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--ink-2);
-  border-left:2px solid var(--overprint);padding-left:12px;margin-bottom:22px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);border-left:2px solid var(--overprint);padding-left:12px;margin-bottom:22px;
 }
 h1{
-  font-family:var(--display);font-weight:700;
-  font-size:clamp(58px,13vw,142px);
-  line-height:.82;letter-spacing:.005em;text-transform:uppercase;
-  margin:0 0 18px;
+  font-family:var(--display);font-weight:700;font-size:clamp(58px,13vw,142px);
+  line-height:.84;letter-spacing:.012em;text-transform:uppercase;margin:0 0 18px;
 }
 h1 span{display:block}
-.lede{font-size:clamp(16px,1.9vw,19px);max-width:56ch;color:var(--ink)}
+.lede{font-size:clamp(16px,1.9vw,19px);max-width:58ch;color:var(--ink)}
 .bm{
-  display:inline-flex;align-items:center;gap:9px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  color:var(--overprint);text-transform:uppercase;margin-bottom:16px;
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.1em;color:var(--overprint);text-transform:uppercase;margin-bottom:16px;
 }
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .btn{
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   text-decoration:none;padding:12px 20px;border:1.5px solid var(--ink);color:var(--ink);
   background:transparent;cursor:pointer;transition:background .16s,color .16s,border-color .16s;
 }
@@ -194,24 +198,32 @@ h1 span{display:block}
 
 /* traverse */
 .profile{width:100%;height:auto;margin:6px 0 34px;display:block}
-.profile .ground{fill:rgba(185,169,129,.28);stroke:var(--contour);stroke-width:1.5}
+.profile .ground{fill:rgba(185,169,129,.26);stroke:var(--contour);stroke-width:1.5}
 .profile .datum{stroke:var(--rule);stroke-width:1;stroke-dasharray:3 4}
-.profile text{font-family:var(--mono);font-size:9.5px;fill:var(--ink-2);letter-spacing:.08em}
+.profile text{font-family:var(--mono);font-size:9px;fill:var(--ink-2);letter-spacing:.04em}
 .profile .stn{fill:var(--sheet);stroke:var(--ink);stroke-width:2}
 .profile .stn-now{fill:var(--overprint);stroke:var(--overprint)}
 
 .stations{display:grid;gap:2px;background:var(--rule);border:1px solid var(--rule)}
-.stn-row{
-  background:var(--card);padding:22px clamp(16px,2.4vw,26px);
-  display:grid;grid-template-columns:64px 1fr;gap:clamp(14px,2vw,26px);
-}
-.stn-no{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-2);line-height:1.5}
+.stn-row{background:var(--card);padding:22px clamp(16px,2.4vw,26px);display:grid;grid-template-columns:64px 1fr;gap:clamp(14px,2vw,26px)}
+.stn-no{font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--ink-2);line-height:1.5}
 .stn-no b{display:block;font-family:var(--display);font-size:30px;letter-spacing:.04em;color:var(--overprint);font-weight:700}
 .stn-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
-.org{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--water);margin-bottom:10px}
+.org{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--water);margin-bottom:10px}
 ul{margin:0;padding-left:18px}
 li{margin-bottom:7px;font-size:15px}
 li::marker{color:var(--contour)}
+
+/* survey controls */
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.chipbtn{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:var(--ink-2);border:1px solid var(--rule);
+  padding:7px 13px;cursor:pointer;transition:background .16s,color .16s,border-color .16s;
+}
+.chipbtn:hover{border-color:var(--ink);color:var(--ink)}
+.chipbtn[aria-pressed="true"]{background:var(--pill);color:var(--pill-ink);border-color:var(--pill)}
+#count{margin:0 0 22px}
 
 /* projects */
 .plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:16px}
@@ -220,32 +232,32 @@ li::marker{color:var(--contour)}
   display:flex;flex-direction:column;position:relative;
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
-.plate:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:4px 4px 0 rgba(27,42,38,.11)}
+.plate:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:4px 4px 0 var(--shadow)}
 .plate.rev{border-color:var(--overprint);border-style:dashed}
-.plate.rev:hover{border-color:var(--overprint);box-shadow:4px 4px 0 rgba(138,62,134,.16)}
+.plate.rev:hover{border-color:var(--overprint)}
+.plate.is-hidden{display:none}
 .tag{
-  position:absolute;top:-1px;right:-1px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--overprint);color:var(--sheet);padding:4px 9px;
+  position:absolute;top:-1px;right:-1px;font-family:var(--mono);font-size:9px;
+  letter-spacing:.1em;text-transform:uppercase;background:var(--overprint);color:var(--sheet);padding:4px 9px;
 }
-.plate .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-2);margin:0 0 9px}
-.plate h3{margin-bottom:9px;padding-right:18px}
+.plate .kind{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);margin:0 0 9px}
+.plate h3{margin-bottom:9px;padding-right:22px}
 .plate p{font-size:14.5px;color:var(--ink-2);margin-bottom:12px}
 .stack{display:flex;flex-wrap:wrap;gap:6px;margin:auto 0 14px}
-.chip{font-family:var(--mono);font-size:10px;letter-spacing:.08em;border:1px solid var(--rule);padding:3px 7px;color:var(--ink-2)}
-.links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;border:1px solid var(--rule);padding:3px 7px;color:var(--ink-2)}
+.links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin:0}
 .links a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .links a:hover{color:var(--overprint)}
 .footnote{
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--overprint);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--overprint);
   border-left:2px solid var(--overprint);padding:8px 0 8px 12px;margin:26px 0 0;max-width:74ch;line-height:1.7;
 }
 
 /* skills */
-.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px 32px}
-.kit h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
-.kit ul{list-style:none;padding:0;margin:0;columns:2;column-gap:18px}
-.kit li{font-size:14.5px;margin-bottom:5px;break-inside:avoid}
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px 32px}
+.kit h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.kit ul{list-style:none;padding:0;margin:0}
+.kit li{font-size:14.5px;margin-bottom:5px}
 
 /* field notes */
 .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
@@ -253,26 +265,31 @@ li::marker{color:var(--contour)}
 .fnote h4{font-family:var(--display);font-size:19px;letter-spacing:.07em;text-transform:uppercase;margin:0 0 6px;font-weight:600}
 .fnote p{font-size:14px;color:var(--ink-2);margin:0}
 
-/* contact + footer collar */
+/* contact */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;background:var(--rule);border:1px solid var(--rule);margin-top:8px}
 .contact a,.contact div{background:var(--card);padding:18px 20px;text-decoration:none;color:var(--ink);display:block}
 .contact a:hover{background:var(--overprint);color:var(--sheet)}
 .contact a:hover .small,.contact a:hover b{color:inherit}
 .contact b{font-family:var(--display);font-size:20px;letter-spacing:.05em;font-weight:600;display:block;margin-top:3px;word-break:break-word}
+.seeking{
+  border:1px solid var(--rule);border-left:3px solid var(--overprint);
+  background:var(--card);padding:16px 20px;margin:0 0 18px;font-size:15px;
+}
+.seeking b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--overprint);display:block;margin-bottom:5px;font-weight:500}
+
 .marginalia{
-  border-top:1px solid var(--rule);margin-top:0;
-  padding:26px clamp(16px,3.4vw,44px);
+  border-top:1px solid var(--rule);padding:26px clamp(16px,3.4vw,44px);
   display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:space-between;
 }
-.scalebar{display:flex;align-items:center;gap:12px}
-.credits{max-width:44ch}
+.scalebar{display:flex;align-items:center;gap:16px}
+.credits{max-width:46ch}
 #readout{
   position:fixed;left:12px;bottom:12px;z-index:60;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
-  background:rgba(27,42,38,.9);color:var(--sheet);padding:6px 10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  background:var(--ink);color:var(--sheet);padding:6px 10px;
   pointer-events:none;opacity:0;transition:opacity .25s;
 }
-@media (pointer:fine){#readout.on{opacity:1}}
+@media (pointer:fine){#readout.on{opacity:.92}}
 
 /* reveal */
 .rev-up{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
@@ -282,32 +299,76 @@ li::marker{color:var(--contour)}
   .stn-row{grid-template-columns:1fr;gap:10px}
   .stn-no{display:flex;align-items:baseline;gap:10px}
   .stn-no b{display:inline}
-  .kit ul{columns:1}
-  #contours{opacity:.75}
+  #contours{opacity:.7}
+  .nav{gap:6px 14px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation:none !important;transition:none !important}
   .rev-up{opacity:1;transform:none}
 }
+
+/* ---------- print: the sheet becomes a plain document ---------- */
+@media print{
+  body{background:#fff;background-image:none;color:#000;font-size:10.5pt;line-height:1.45}
+  .sheet{border:0;outline:0;margin:0;max-width:none;background:#fff}
+  .collar{padding:0}
+  .collar::before,.collar::after{display:none}
+  .field{border:0;padding:0}
+  .nav,#contours,#readout,.controls,.actions,.skip,.scalebar,#count{display:none}
+  .hero{padding:0 0 14px;overflow:visible}
+  .block{padding:16pt 0;border-top:1px solid #999;break-inside:auto}
+  h1{font-size:34pt;margin-bottom:8px}
+  h1 span{display:inline}
+  h1 span+span::before{content:" "}
+  h2{font-size:16pt}
+  h3{font-size:12pt}
+  .lede,.note{color:#000}
+  .plates{grid-template-columns:1fr 1fr;gap:10px}
+  .plate,.stn-row,.legend div,.contact a,.contact div,.fnote{break-inside:avoid;background:#fff;box-shadow:none}
+  .plate{border:1px solid #bbb}
+  .plate.is-hidden{display:flex}
+  .plate:hover{transform:none;box-shadow:none}
+  .rev-up{opacity:1;transform:none}
+  .links a[href^="http"]::after{content:" " attr(href);font-size:7.5pt;color:#555;letter-spacing:0}
+  .links a{border-bottom:0}
+  .tag{position:static;display:inline-block;background:#fff;color:#000;border:1px solid #000;padding:1px 5px;margin-bottom:6px}
+  .footnote{color:#000;border-left-color:#000}
+}
 </style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Cliff Cezar",
+  "jobTitle":"Software Developer",
+  "email":"clffczr@gmail.com",
+  "telephone":"+639708398415",
+  "alumniOf":{"@type":"CollegeOrUniversity","name":"University of the Philippines Baguio"},
+  "address":{"@type":"PostalAddress","addressLocality":"Manila","addressRegion":"NCR","addressCountry":"PH"},
+  "sameAs":["https://github.com/cgcezar","https://linkedin.com/in/cliff-cezar"],
+  "knowsAbout":["Full stack web development","Python","JavaScript","React","Agent based modeling","Network security tooling","AWS","Data analysis"]
+}
+</script>
 </head>
 <body>
 
+<a class="skip" href="#legend">Skip to content</a>
 <div id="readout" aria-hidden="true"></div>
 
-<main class="sheet">
+<main class="sheet" id="top">
 <div class="collar">
 <div class="field">
 
   <nav class="nav">
-    <b>Cezar Quadrangle</b>
-    <a href="#legend">Legend</a>
-    <a href="#traverse">Traverse</a>
-    <a href="#survey">Survey</a>
-    <a href="#kit">Kit</a>
-    <a href="#notes">Field notes</a>
-    <a href="#contact">Contact</a>
+    <a class="brand" href="#top">Cezar Quadrangle</a>
+    <a class="jump" href="#legend">Legend</a>
+    <a class="jump" href="#traverse">Traverse</a>
+    <a class="jump" href="#survey">Survey</a>
+    <a class="jump" href="#kit">Kit</a>
+    <a class="jump" href="#notes">Field notes</a>
+    <a class="jump" href="#contact">Contact</a>
+    <button class="toggle" id="night" aria-pressed="false">Night sheet</button>
   </nav>
 
   <!-- ============ HERO ============ -->
@@ -320,15 +381,15 @@ li::marker{color:var(--contour)}
         <svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2 L14.5 14 L1.5 14 Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="10.5" r="1.6" fill="currentColor"/></svg>
         BM 1540 · Baguio · 16.4023 N 120.5960 E
       </p>
-      <p class="lede">BS Computer Science from the University of the Philippines Baguio. I build full stack web apps, model things that are hard to test in real life, and I like maps enough to draw my portfolio as one. Currently based in Quiapo, Manila and open to entry level developer roles.</p>
+      <p class="lede">BS Computer Science from the University of the Philippines Baguio. I build full stack web apps, write defensive security tooling in Python, and model things that are hard to test in real life. I also like maps enough to draw my portfolio as one. Based in Quiapo, Manila and open to entry level roles.</p>
       <div class="actions">
         <a class="btn" href="#survey">Walk the survey</a>
-        <a class="btn alt" href="Cezar_Cliff_Resume.pdf" target="_blank" rel="noopener">Open the resume</a>
+        <a class="btn alt" href="Cliff_Cezar_Resume.pdf" target="_blank" rel="noopener">Open the resume</a>
       </div>
     </div>
   </header>
 
-  <!-- ============ LEGEND / ABOUT ============ -->
+  <!-- ============ LEGEND ============ -->
   <section class="block rev-up" id="legend">
     <div class="head">
       <p class="eyebrow">Sheet 01 · Legend</p>
@@ -338,24 +399,24 @@ li::marker{color:var(--contour)}
     <div class="legend">
       <div>
         <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 11 L5.5 4 L9 9 L11.5 5.5 L15 11" fill="none" stroke="var(--water)" stroke-width="1.5"/></svg>Full stack developer</h4>
-        <p>Shipped the SILBI web platform end to end, from requirements gathering to deployment, plus two live personal apps on Vercel.</p>
+        <p>Shipped the SILBI platform end to end, from requirements gathering to deployment, plus live personal apps on Vercel that real people use.</p>
       </div>
       <div>
-        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="var(--water)" stroke-width="1.5"/><circle cx="8" cy="8" r="2.2" fill="var(--water)"/></svg>Agent based modeling</h4>
-        <p>Built a NetLogo simulation of COVID-19 spread across two barangays in Quiapo, then tested three food relief strategies over 100 runs each.</p>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 L14 4.2 V8.4 C14 11.4 11.4 13.6 8 14.5 C4.6 13.6 2 11.4 2 8.4 V4.2 Z" fill="none" stroke="var(--water)" stroke-width="1.4"/></svg>Defensive security tooling</h4>
+        <p>Four Python tools for the blue team side: network inventory and audit, packet triage, password policy auditing, and a Burp extension for HTTP headers.</p>
       </div>
       <div>
-        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 13 L2 3 L8 6 L14 3 L14 13 L8 10 Z" fill="none" stroke="var(--water)" stroke-width="1.4"/></svg>Data and analysis</h4>
-        <p>Statistical testing in R, figures in Python, and full thesis typesetting in LaTeX with IEEE citations across 60 references.</p>
+        <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="var(--water)" stroke-width="1.5"/><circle cx="8" cy="8" r="2.2" fill="var(--water)"/></svg>Modeling and analysis</h4>
+        <p>An agent based NetLogo model of COVID-19 spread in two Quiapo barangays, tested over 100 runs per scenario and analyzed with statistical tests in R.</p>
       </div>
       <div>
         <h4><svg class="sym" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4" width="11" height="8" fill="none" stroke="var(--water)" stroke-width="1.4"/><path d="M2.5 7.5 H13.5" stroke="var(--water)" stroke-width="1.4"/></svg>Two years as treasurer</h4>
-        <p>Handled dues, budgets, canvassing, and financial reports for the Rotaract Club of UP Baguio. Good practice for saying no to a budget line.</p>
+        <p>Dues, budgets, canvassing, and financial reports for the Rotaract Club of UP Baguio. Good practice for saying no to a budget line.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ TRAVERSE / EXPERIENCE ============ -->
+  <!-- ============ TRAVERSE ============ -->
   <section class="block rev-up" id="traverse">
     <div class="head">
       <p class="eyebrow">Sheet 02 · Traverse</p>
@@ -436,83 +497,140 @@ li::marker{color:var(--contour)}
     </div>
   </section>
 
-  <!-- ============ SURVEY / PROJECTS ============ -->
+  <!-- ============ SURVEY ============ -->
   <section class="block rev-up" id="survey">
     <div class="head">
       <p class="eyebrow">Sheet 03 · Surveyed features</p>
       <h2>Things I built and shipped</h2>
-      <p class="note">Features drawn in purple were surveyed after the resume went to print, the same way revisions are overprinted on a quadrangle.</p>
+      <p class="note">A legend lets you choose which feature classes get drawn, so this one does too.</p>
     </div>
 
-    <div class="plates">
-      <article class="plate">
+    <div class="controls" role="group" aria-label="Filter surveyed features by class">
+      <button class="chipbtn" data-filter="all" aria-pressed="true">All features</button>
+      <button class="chipbtn" data-filter="app" aria-pressed="false">Web apps</button>
+      <button class="chipbtn" data-filter="security" aria-pressed="false">Security tools</button>
+      <button class="chipbtn" data-filter="site" aria-pressed="false">Sites</button>
+      <button class="chipbtn" data-filter="infra" aria-pressed="false">Infrastructure</button>
+      <button class="chipbtn" data-filter="research" aria-pressed="false">Research and docs</button>
+    </div>
+    <p class="small" id="count" role="status" aria-live="polite"></p>
+
+    <div class="plates" id="plates">
+
+      <article class="plate" data-class="app">
         <p class="kind">Full stack web app</p>
         <h3>Job-Tag</h3>
-        <p>A tracker for job applications with a calendar for interviews and deadlines, and file upload and download for resumes, CVs, and other documents. Paste a job posting link and it fills in the job title, company, work setup, and employment type by itself, so there is almost no manual encoding left per application.</p>
-        <div class="stack"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Vercel</span><span class="chip">Open source</span></div>
+        <p>A tracker for job applications with a calendar for interviews and deadlines, and file upload and download for resumes and CVs. Paste a LinkedIn job link and a serverless function parses it into job title, company, work setup, and employment type, so there is almost no manual encoding left. Runs on a GitHub Actions pipeline.</p>
+        <div class="stack"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Serverless</span><span class="chip">GitHub Actions</span></div>
         <p class="links"><a href="https://job-tag.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/cgcezar/job-tag" target="_blank" rel="noopener">Source</a></p>
       </article>
 
-      <article class="plate">
+      <article class="plate" data-class="security">
+        <p class="kind">Security tooling</p>
+        <h3>netscan-reporter</h3>
+        <p>Turns Nmap XML output into a readable HTML and CSV network inventory, then runs an audit pass that flags at risk services: plaintext protocols, exposed databases, and open remote access ports. Standard library only, so it runs anywhere Python does.</p>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Nmap</span><span class="chip">No dependencies</span></div>
+        <p class="links"><a href="https://github.com/cgcezar/netscan-reporter" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate" data-class="security">
+        <p class="kind">Security tooling</p>
+        <h3>pcap-triage</h3>
+        <p>A packet capture analyzer built on Scapy. It summarizes the protocol breakdown, top talkers, and DNS and HTTP activity, then flags cleartext credentials and possible port scans. Outputs JSON so it can sit inside a larger pipeline instead of only being read by a person.</p>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Scapy</span><span class="chip">JSON output</span></div>
+        <p class="links"><a href="https://github.com/cgcezar/pcap-triage" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate" data-class="security">
+        <p class="kind">Security tooling</p>
+        <h3>passaudit</h3>
+        <p>A defensive password policy auditor that scores entropy, checks breach list membership, and catches weak patterns. It includes a pure Python NTLM implementation for generating practice hashes and a dictionary attack demonstrator, so the cost of a weak policy is visible instead of theoretical.</p>
+        <div class="stack"><span class="chip">Python</span><span class="chip">NTLM</span><span class="chip">Entropy scoring</span></div>
+        <p class="links"><a href="https://github.com/cgcezar/passaudit" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate" data-class="security">
+        <p class="kind">Security tooling</p>
+        <h3>HeaderHound</h3>
+        <p>A passive Burp Suite extension written in Jython. It audits HTTP responses for missing security headers such as CSP, HSTS, and X-Frame-Options, and for headers that give away version information, then raises each finding with a severity and remediation guidance.</p>
+        <div class="stack"><span class="chip">Jython</span><span class="chip">Burp Suite</span><span class="chip">HTTP</span></div>
+        <p class="links"><a href="https://github.com/cgcezar/burp-header-hound" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate" data-class="app">
         <p class="kind">Browser game</p>
         <h3>Byte: A Coding Pet</h3>
-        <p>A virtual pet where every interaction has to be earned by solving a JavaScript challenge instead of clicking a button. It runs user submitted functions against test cases inside a contained scope and reports per test results, handling syntax and runtime errors without breaking the app. Game logic stays as plain JavaScript, separate from React state and UI.</p>
+        <p>A virtual pet where every interaction has to be earned by solving a JavaScript challenge instead of clicking a button. It runs user submitted functions against test cases inside a contained scope and reports per test results, handling syntax and runtime errors without breaking the app. Game logic stays plain JavaScript, separate from React state and UI.</p>
         <div class="stack"><span class="chip">React</span><span class="chip">Vite</span><span class="chip">Test runner</span><span class="chip">XP system</span></div>
         <p class="links"><a href="https://github.com/cgcezar/byte-coding-pet" target="_blank" rel="noopener">Source</a></p>
       </article>
 
-      <article class="plate rev">
-        <span class="tag">Revision</span>
+      <article class="plate" data-class="app">
+        <p class="kind">Platform</p>
+        <h3>SILBI Tulay</h3>
+        <p>The incubatee platform I built at UP Baguio, kept here as well because it is the largest thing I have shipped with real users on the other end. Learning resources, announcements, roadmap tracking, and legal document generation in one place.</p>
+        <div class="stack"><span class="chip">PHP</span><span class="chip">Linux</span><span class="chip">Automation</span></div>
+        <p class="links"><a href="https://upbsilbitulay.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/rye0x/silbi-tulay" target="_blank" rel="noopener">Source</a></p>
+      </article>
+
+      <article class="plate rev" data-class="infra">
+        <span class="tag">In progress</span>
+        <p class="kind">Cloud infrastructure</p>
+        <h3>Job-Tag on AWS</h3>
+        <p>Redeploying Job-Tag as an infrastructure project instead of building something new: containers with Docker, infrastructure as code with Terraform, ECS Fargate for the runtime, GitHub Actions for the pipeline, and monitoring on top. The point is to learn the shipping side properly, not just the app side.</p>
+        <div class="stack"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">ECS Fargate</span></div>
+      </article>
+
+      <article class="plate" data-class="site">
         <p class="kind">Organization site</p>
         <h3>UP Baguio Mountaineers</h3>
-        <p>The full club site behind the Open Climb event page. It carries a Cordillera mountain map built on Leaflet and OpenStreetMap, an events calendar on FullCalendar, and a batch directory that was designed carefully so member details stay private. Plain HTML, CSS, and JavaScript with no build step, so it deploys for free and stays easy to hand over.</p>
+        <p>The full club site behind the Open Climb page. It carries a Cordillera mountain map built on Leaflet and OpenStreetMap, an events calendar on FullCalendar, and a batch directory designed so member details stay private. Plain HTML, CSS, and JavaScript with no build step, so it deploys free and stays easy to hand over to the next officer.</p>
         <div class="stack"><span class="chip">Leaflet</span><span class="chip">OpenStreetMap</span><span class="chip">FullCalendar</span><span class="chip">No build step</span></div>
       </article>
 
-      <article class="plate rev">
-        <span class="tag">Revision</span>
-        <p class="kind">Organization site</p>
-        <h3>Rotaract Club of UP Baguio</h3>
-        <p>A static site for the club with officer directories, flagship events, and an End Polio Now section. Built with plain HTML, CSS, and JavaScript so officers who come after me can update it without learning a framework first.</p>
-        <div class="stack"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
-      </article>
-
-      <article class="plate">
+      <article class="plate" data-class="site">
         <p class="kind">Event site</p>
         <h3>Open Climb 2026</h3>
         <p>The official event website for the UP Baguio Mountaineers Open Climb, built and launched in March 2026. It puts event information, registration, and promotion in one public facing place instead of scattered posts.</p>
         <div class="stack"><span class="chip">Static site</span><span class="chip">Registration</span></div>
       </article>
 
-      <article class="plate rev">
-        <span class="tag">In progress</span>
-        <p class="kind">Infrastructure</p>
-        <h3>Job-Tag on AWS</h3>
-        <p>Redeploying Job-Tag as an infrastructure project instead of building something new: containers with Docker, infrastructure as code with Terraform, ECS Fargate for the runtime, GitHub Actions for the pipeline, and monitoring on top. The goal is to learn the cloud side of shipping, not just the app side.</p>
-        <div class="stack"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span></div>
+      <article class="plate" data-class="site">
+        <p class="kind">Organization site</p>
+        <h3>Rotaract Club of UP Baguio</h3>
+        <p>A static site for the club with officer directories, flagship events, and an End Polio Now section. Built with plain HTML, CSS, and JavaScript so the officers who come after me can update it without learning a framework first.</p>
+        <div class="stack"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
       </article>
 
-      <article class="plate rev">
-        <span class="tag">Revision</span>
+      <article class="plate rev" data-class="app">
+        <span class="tag">In progress</span>
+        <p class="kind">Learning app</p>
+        <h3>Python study app</h3>
+        <p>A study app that walks through all 29 topics of a seven module Python course, from basics and conditionals through collections, loops, functions, files, and pandas. Every topic gets an activity and a test, so it is practice rather than reading. Built to deploy on Vercel from GitHub.</p>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Web app</span><span class="chip">Vercel</span></div>
+      </article>
+
+      <article class="plate" data-class="research">
         <p class="kind">Research artifact</p>
         <h3>COVID-19 and food relief model</h3>
-        <p>My undergraduate Special Problem: a NetLogo SEIR model of Barangays 384 and 385 in Quiapo, comparing three food relief systems across three barangay scenarios. It ships with behavior flowcharts, a simulation README, Python figures, and a LaTeX paper with 60 IEEE references.</p>
+        <p>My undergraduate Special Problem: a NetLogo model of Barangays 384 and 385 in Quiapo, comparing three food relief systems across three barangay scenarios at 100 runs each. It ships with agent behavior flowcharts, a simulation README, matplotlib figures, and a LaTeX paper carrying about 60 IEEE references.</p>
         <div class="stack"><span class="chip">NetLogo</span><span class="chip">R</span><span class="chip">Python</span><span class="chip">LaTeX</span></div>
       </article>
 
-      <article class="plate">
-        <p class="kind">Platform</p>
-        <h3>SILBI Tulay</h3>
-        <p>The incubatee platform I built at UP Baguio, kept here as well because it is the largest thing I have shipped with real users on the other end.</p>
-        <div class="stack"><span class="chip">PHP</span><span class="chip">Linux</span><span class="chip">Automation</span></div>
-        <p class="links"><a href="https://upbsilbitulay.vercel.app" target="_blank" rel="noopener">Live site</a><a href="https://github.com/rye0x/silbi-tulay" target="_blank" rel="noopener">Source</a></p>
+      <article class="plate rev" data-class="research">
+        <span class="tag">In progress</span>
+        <p class="kind">Volunteer work</p>
+        <h3>UPCAT mathematics reviewer</h3>
+        <p>A mathematics reviewer for UPCAT takers, typeset in LaTeX with the UP Baguio Pahinungod. The output is a printable reviewer for students who cannot pay for a review center, so the work is in the clarity of the material rather than in any interface.</p>
+        <div class="stack"><span class="chip">LaTeX</span><span class="chip">Pahinungod</span></div>
       </article>
+
     </div>
 
-    <p class="footnote">Purple overprint marks features added since the last printing. On a real quadrangle it means the sheet was revised from newer aerial photography without resurveying the whole map. Here it means these are the projects that are not on my resume yet.</p>
+    <p class="footnote">Dashed purple is overprint. On a real quadrangle it marks revisions added to the sheet after the original survey, so here it marks what I am actively working on right now rather than what is already finished.</p>
   </section>
 
-  <!-- ============ KIT / SKILLS ============ -->
+  <!-- ============ KIT ============ -->
   <section class="block rev-up" id="kit">
     <div class="head">
       <p class="eyebrow">Sheet 04 · Kit</p>
@@ -526,11 +644,19 @@ li::marker{color:var(--contour)}
       </div>
       <div>
         <h4>Web and tools</h4>
-        <ul><li>React</li><li>Vite</li><li>Node.js</li><li>Git and GitHub</li><li>AWS</li><li>Vercel</li><li>Linux and UNIX</li><li>LaTeX</li><li>Figma</li><li>AI and automation</li></ul>
+        <ul><li>React and Vite</li><li>Node.js</li><li>Git and GitHub</li><li>Vercel</li><li>Linux and UNIX</li><li>LaTeX</li><li>Figma</li></ul>
+      </div>
+      <div>
+        <h4>Cloud and pipelines</h4>
+        <ul><li>AWS</li><li>Docker</li><li>Terraform</li><li>GitHub Actions</li><li>ECS Fargate</li></ul>
+      </div>
+      <div>
+        <h4>Security and networking</h4>
+        <ul><li>Nmap</li><li>Scapy</li><li>Burp Suite</li><li>Packet analysis</li><li>HTTP security headers</li><li>Password policy auditing</li></ul>
       </div>
       <div>
         <h4>Modeling and mapping</h4>
-        <ul><li>NetLogo</li><li>QGIS</li><li>ArcGIS</li><li>Leaflet</li><li>Statistical testing</li><li>Canva</li></ul>
+        <ul><li>NetLogo</li><li>pandas</li><li>Statistical testing in R</li><li>QGIS and ArcGIS</li><li>Leaflet</li></ul>
       </div>
       <div>
         <h4>Toponymy</h4>
@@ -539,7 +665,7 @@ li::marker{color:var(--contour)}
     </div>
   </section>
 
-  <!-- ============ FIELD NOTES / INTERESTS ============ -->
+  <!-- ============ FIELD NOTES ============ -->
   <section class="block rev-up" id="notes">
     <div class="head">
       <p class="eyebrow">Sheet 05 · Field notes</p>
@@ -561,8 +687,9 @@ li::marker{color:var(--contour)}
     <div class="head">
       <p class="eyebrow">Sheet 06 · Control points</p>
       <h2>Get in touch</h2>
-      <p class="note">Open to entry level software developer roles, onsite in Metro Manila or remote.</p>
+      <p class="note">A control point is a spot with known coordinates that everything else gets measured against. Here are mine.</p>
     </div>
+    <p class="seeking"><b>Open to</b>Entry level backend, full stack, and platform engineering roles, plus data analyst work. Onsite in Metro Manila or remote.</p>
     <div class="contact">
       <a href="mailto:clffczr@gmail.com" id="mail"><span class="small">Email</span><b id="mailtext">clffczr@gmail.com</b></a>
       <a href="tel:+639708398415"><span class="small">Phone</span><b>+63 970 839 8415</b></a>
@@ -576,24 +703,24 @@ li::marker{color:var(--contour)}
 
 <footer class="marginalia">
   <div class="scalebar">
-    <svg width="150" height="34" viewBox="0 0 150 34" aria-label="Scale bar">
+    <svg width="150" height="34" viewBox="0 0 150 34" aria-label="Scale bar, six years">
       <rect x="0" y="12" width="30" height="9" fill="var(--ink)"/>
       <rect x="30" y="12" width="30" height="9" fill="none" stroke="var(--ink)" stroke-width="1"/>
       <rect x="60" y="12" width="30" height="9" fill="var(--ink)"/>
       <rect x="90" y="12" width="30" height="9" fill="none" stroke="var(--ink)" stroke-width="1"/>
-      <text x="0" y="9" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">0</text>
-      <text x="112" y="9" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-2)">6 YEARS</text>
+      <text x="0" y="9" font-family="Azeret Mono, monospace" font-size="9" fill="var(--ink-2)">0</text>
+      <text x="112" y="9" font-family="Azeret Mono, monospace" font-size="9" fill="var(--ink-2)">6 YEARS</text>
     </svg>
-    <svg width="66" height="52" viewBox="0 0 66 52" aria-label="Declination diagram">
+    <svg width="66" height="52" viewBox="0 0 66 52" aria-label="Magnetic declination diagram">
       <path d="M18 48 L18 8" stroke="var(--ink)" stroke-width="1.2"/>
       <path d="M18 8 L15 15 L21 15 Z" fill="var(--ink)"/>
-      <text x="12" y="6" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--ink-2)">GN</text>
+      <text x="12" y="6" font-family="Azeret Mono, monospace" font-size="8" fill="var(--ink-2)">GN</text>
       <path d="M18 48 L34 10" stroke="var(--overprint)" stroke-width="1.2"/>
       <path d="M34 10 L30 16 L36 17 Z" fill="var(--overprint)"/>
-      <text x="38" y="12" font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--overprint)">MN</text>
+      <text x="38" y="12" font-family="Azeret Mono, monospace" font-size="8" fill="var(--overprint)">MN</text>
     </svg>
   </div>
-  <p class="small credits">Compiled and drawn by Cliff Cezar. Base data: six years in Baguio, one thesis, and a lot of late nights. Sheet last revised August 2026. Contours are generated, elevations are real.</p>
+  <p class="small credits">Compiled and drawn by Cliff Cezar. Base data: six years in Baguio, one thesis, and a lot of late nights. Sheet last revised August 2026. Contours are generated, elevations are real. Print this page for a plain paper version.</p>
 </footer>
 
 </div><!-- /collar -->
@@ -602,6 +729,16 @@ li::marker{color:var(--contour)}
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- night sheet ---- */
+  var body = document.body, nightBtn = document.getElementById('night');
+  function setNight(on){
+    body.classList.toggle('night', on);
+    nightBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    nightBtn.textContent = on ? 'Day sheet' : 'Night sheet';
+  }
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) setNight(true);
+  nightBtn.addEventListener('click', function(){ setNight(!body.classList.contains('night')); });
 
   /* ---- contour field ---- */
   var svg = document.getElementById('contours');
@@ -662,6 +799,33 @@ li::marker{color:var(--contour)}
     }, 60);
   }
 
+  /* ---- survey filter ---- */
+  var plates = Array.prototype.slice.call(document.querySelectorAll('#plates .plate'));
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.chipbtn'));
+  var countEl = document.getElementById('count');
+  var total = plates.length;
+  var active = plates.filter(function(p){ return p.classList.contains('rev'); }).length;
+
+  function apply(filter){
+    var shown = 0;
+    plates.forEach(function(p){
+      var match = filter === 'all' || p.getAttribute('data-class') === filter;
+      p.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-filter') === filter ? 'true' : 'false');
+    });
+    countEl.textContent = filter === 'all'
+      ? total + ' features surveyed · ' + active + ' currently under revision'
+      : shown + ' of ' + total + ' features drawn';
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.getAttribute('data-filter')); });
+  });
+  apply('all');
+
   /* ---- scroll reveal ---- */
   var targets = document.querySelectorAll('.rev-up');
   if ('IntersectionObserver' in window && !reduce){
@@ -673,6 +837,21 @@ li::marker{color:var(--contour)}
     Array.prototype.forEach.call(targets, function(t){ io.observe(t); });
   } else {
     Array.prototype.forEach.call(targets, function(t){ t.classList.add('is-in'); });
+  }
+
+  /* ---- active nav link ---- */
+  var jumps = Array.prototype.slice.call(document.querySelectorAll('.nav a.jump'));
+  var sections = jumps.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window){
+    var nio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        jumps.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      });
+    }, {rootMargin: '-45% 0px -50% 0px'});
+    sections.forEach(function(s){ nio.observe(s); });
   }
 
   /* ---- cursor coordinate readout ---- */
